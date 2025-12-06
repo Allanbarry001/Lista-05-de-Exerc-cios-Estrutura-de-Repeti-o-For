@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Exercícios de Lógica - JS (For)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar para áreas de resultado */
+        .result-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .result-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .result-box::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .result-box::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen p-6">
+
+    <header class="max-w-6xl mx-auto mb-8 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-2">Exercícios de Lógica (Versão For)</h1>
+        <p class="text-slate-600">Implementação de 15 algoritmos utilizando laços <code>for</code> em JavaScript.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Números de 1 a 20 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-indigo-500">
+            <h2 class="font-bold text-lg mb-2">1. Contagem 1 a 20</h2>
+            <p class="text-sm text-gray-600 mb-4">Exibe os números de 1 a 20.</p>
+            <button onclick="ex1()" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">Executar</button>
+            <div id="res1" class="mt-4 p-3 bg-slate-50 rounded h-24 overflow-y-auto text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 2. Pares de 1 a 50 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-indigo-500">
+            <h2 class="font-bold text-lg mb-2">2. Pares (1 a 50)</h2>
+            <p class="text-sm text-gray-600 mb-4">Exibe apenas números pares.</p>
+            <button onclick="ex2()" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">Executar</button>
+            <div id="res2" class="mt-4 p-3 bg-slate-50 rounded h-24 overflow-y-auto text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 3. Tabuada -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-emerald-500">
+            <h2 class="font-bold text-lg mb-2">3. Tabuada</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite um número (1 a 10):</p>
+            <input type="number" id="input3" class="w-full border p-2 rounded mb-2" placeholder="Ex: 5">
+            <button onclick="ex3()" class="w-full bg-emerald-600 text-white py-2 rounded hover:bg-emerald-700 transition">Ver Tabuada</button>
+            <div id="res3" class="mt-4 p-3 bg-slate-50 rounded h-32 overflow-y-auto text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 4. Soma 1 a 100 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-indigo-500">
+            <h2 class="font-bold text-lg mb-2">4. Soma (1 a 100)</h2>
+            <p class="text-sm text-gray-600 mb-4">Calcula a soma total de 1 até 100.</p>
+            <button onclick="ex4()" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">Calcular Soma</button>
+            <div id="res4" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono font-bold text-center text-lg text-indigo-800"></div>
+        </div>
+
+        <!-- 5. Soma Pares 1 a 200 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-indigo-500">
+            <h2 class="font-bold text-lg mb-2">5. Soma Pares (1 a 200)</h2>
+            <p class="text-sm text-gray-600 mb-4">Soma apenas os números pares.</p>
+            <button onclick="ex5()" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">Calcular Soma</button>
+            <div id="res5" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono font-bold text-center text-lg text-indigo-800"></div>
+        </div>
+
+        <!-- 6. Maior e Menor -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-blue-500">
+            <h2 class="font-bold text-lg mb-2">6. Maior e Menor</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite 10 números separados por vírgula:</p>
+            <input type="text" id="input6" class="w-full border p-2 rounded mb-2" placeholder="Ex: 10, 5, 8, 99, 2...">
+            <button onclick="ex6()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Analisar</button>
+            <div id="res6" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 7. Média Aritmética -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-blue-500">
+            <h2 class="font-bold text-lg mb-2">7. Média Aritmética</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite 5 números separados por vírgula:</p>
+            <input type="text" id="input7" class="w-full border p-2 rounded mb-2" placeholder="Ex: 8, 7, 10, 6, 9">
+            <button onclick="ex7()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Calcular Média</button>
+            <div id="res7" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono font-bold text-center"></div>
+        </div>
+
+        <!-- 8. Fibonacci -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-purple-500">
+            <h2 class="font-bold text-lg mb-2">8. Fibonacci</h2>
+            <p class="text-sm text-gray-600 mb-4">Sequência até o 10º termo.</p>
+            <button onclick="ex8()" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Gerar Sequência</button>
+            <div id="res8" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono break-words"></div>
+        </div>
+
+        <!-- 9. Contagem 1 a N -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-emerald-500">
+            <h2 class="font-bold text-lg mb-2">9. Contar até N</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite um número limite N:</p>
+            <input type="number" id="input9" class="w-full border p-2 rounded mb-2" placeholder="Ex: 15">
+            <button onclick="ex9()" class="w-full bg-emerald-600 text-white py-2 rounded hover:bg-emerald-700 transition">Contar</button>
+            <div id="res9" class="mt-4 p-3 bg-slate-50 rounded h-24 overflow-y-auto text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 10. Ímpares 100-200 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-indigo-500">
+            <h2 class="font-bold text-lg mb-2">10. Ímpares (100-200)</h2>
+            <p class="text-sm text-gray-600 mb-4">Lista todos os ímpares no intervalo.</p>
+            <button onclick="ex10()" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition">Listar Ímpares</button>
+            <div id="res10" class="mt-4 p-3 bg-slate-50 rounded h-24 overflow-y-auto text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 11. Maiores de Idade -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-blue-500">
+            <h2 class="font-bold text-lg mb-2">11. Maiores de Idade</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite 10 idades separadas por vírgula:</p>
+            <input type="text" id="input11" class="w-full border p-2 rounded mb-2" placeholder="Ex: 10, 25, 18, 50...">
+            <button onclick="ex11()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Verificar</button>
+            <div id="res11" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 12. Fatorial -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-purple-500">
+            <h2 class="font-bold text-lg mb-2">12. Fatorial</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite um número inteiro:</p>
+            <input type="number" id="input12" class="w-full border p-2 rounded mb-2" placeholder="Ex: 5">
+            <button onclick="ex12()" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Calcular Fatorial</button>
+            <div id="res12" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono font-bold"></div>
+        </div>
+
+        <!-- 13. Soma Múltiplos de 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-emerald-500">
+            <h2 class="font-bold text-lg mb-2">13. Múltiplos de 3</h2>
+            <p class="text-sm text-gray-600 mb-2">Soma múltiplos de 3 até o número:</p>
+            <input type="number" id="input13" class="w-full border p-2 rounded mb-2" placeholder="Ex: 10">
+            <button onclick="ex13()" class="w-full bg-emerald-600 text-white py-2 rounded hover:bg-emerald-700 transition">Calcular Soma</button>
+            <div id="res13" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono font-bold"></div>
+        </div>
+
+        <!-- 14. Nomes Invertidos -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-orange-500">
+            <h2 class="font-bold text-lg mb-2">14. Nomes Invertidos</h2>
+            <p class="text-sm text-gray-600 mb-2">Digite 5 nomes separados por vírgula:</p>
+            <input type="text" id="input14" class="w-full border p-2 rounded mb-2" placeholder="Ana, Bob, Carlos...">
+            <button onclick="ex14()" class="w-full bg-orange-600 text-white py-2 rounded hover:bg-orange-700 transition">Inverter Ordem</button>
+            <div id="res14" class="mt-4 p-3 bg-slate-50 rounded text-sm result-box font-mono"></div>
+        </div>
+
+        <!-- 15. Triângulo de Asteriscos -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border-t-4 border-orange-500">
+            <h2 class="font-bold text-lg mb-2">15. Triângulo</h2>
+            <p class="text-sm text-gray-600 mb-2">Tamanho da base (nº de linhas):</p>
+            <input type="number" id="input15" class="w-full border p-2 rounded mb-2" placeholder="Ex: 5">
+            <button onclick="ex15()" class="w-full bg-orange-600 text-white py-2 rounded hover:bg-orange-700 transition">Desenhar</button>
+            <div id="res15" class="mt-4 p-3 bg-slate-800 text-white rounded h-32 overflow-y-auto text-sm result-box font-mono leading-none"></div>
+        </div>
+
+    </main>
+
+    <footer class="text-center mt-12 mb-6 text-slate-500 text-sm">
+        <p>Desenvolvido com HTML, CSS (Tailwind) e JavaScript</p>
+    </footer>
+
+    <script>
+        // Função auxiliar para exibir texto
+        function output(id, text) {
+            document.getElementById(id).innerHTML = text;
+        }
+
+        // Função auxiliar para parsear lista de números separados por vírgula
+        function getNumberArray(inputId) {
+            const raw = document.getElementById(inputId).value;
+            if(!raw.trim()) return [];
+            return raw.split(',').map(n => Number(n.trim())).filter(n => !isNaN(n));
+        }
+
+        // 1. Números de 1 a 20 (FOR)
+        function ex1() {
+            let res = [];
+            for(let i=1; i<=20; i++) res.push(i);
+            output('res1', res.join(', '));
+        }
+
+        // 2. Pares de 1 a 50 (FOR)
+        function ex2() {
+            let res = [];
+            for(let i=1; i<=50; i++) {
+                if(i % 2 === 0) res.push(i);
+            }
+            output('res2', res.join(', '));
+        }
+
+        // 3. Tabuada (FOR)
+        function ex3() {
+            let num = Number(document.getElementById('input3').value);
+            if(!num) { output('res3', "Digite um número válido."); return; }
+            let html = '';
+            for(let i=1; i<=10; i++) {
+                html += `${num} x ${i} = ${num * i}<br>`;
+            }
+            output('res3', html);
+        }
+
+        // 4. Soma de 1 a 100 (FOR)
+        function ex4() {
+            let soma = 0;
+            for(let i=1; i<=100; i++) soma += i;
+            output('res4', `Soma total: ${soma}`);
+        }
+
+        // 5. Soma Pares 1 a 200 (FOR)
+        function ex5() {
+            let soma = 0;
+            for(let i=1; i<=200; i++) {
+                if(i % 2 === 0) soma += i;
+            }
+            output('res5', `Soma dos pares: ${soma}`);
+        }
+
+        // 6. Maior e Menor de 10 números
+        function ex6() {
+            let nums = getNumberArray('input6');
+            if(nums.length === 0) { output('res6', "Digite os números."); return; }
+            
+            let maior = Math.max(...nums);
+            let menor = Math.min(...nums);
+            
+            output('res6', `Valores lidos: ${nums.length}<br>Maior: <strong>${maior}</strong><br>Menor: <strong>${menor}</strong>`);
+        }
+
+        // 7. Média Aritmética de 5 números
+        function ex7() {
+            let nums = getNumberArray('input7');
+            if(nums.length === 0) { output('res7', "Digite os números."); return; }
+            
+            let soma = nums.reduce((a, b) => a + b, 0);
+            let media = soma / nums.length;
+            output('res7', `Média: ${media.toFixed(2)}`);
+        }
+
+        // 8. Fibonacci (FOR)
+        function ex8() {
+            let a = 0, b = 1;
+            let seq = [a, b];
+            for(let i=2; i<10; i++) {
+                let prox = a + b;
+                seq.push(prox);
+                a = b;
+                b = prox;
+            }
+            output('res8', seq.join(' - '));
+        }
+
+        // 9. 1 até N (FOR)
+        function ex9() {
+            let n = Number(document.getElementById('input9').value);
+            if(n < 1) { output('res9', "Digite um N maior que 0."); return; }
+            let res = [];
+            for(let i=1; i<=n; i++) res.push(i);
+            output('res9', res.join(', '));
+        }
+
+        // 10. Ímpares entre 100 e 200 (FOR)
+        function ex10() {
+            let res = [];
+            for(let i=100; i<=200; i++) {
+                if(i % 2 !== 0) res.push(i);
+            }
+            output('res10', res.join(', '));
+        }
+
+        // 11. Contar maiores de idade (18+)
+        function ex11() {
+            let idades = getNumberArray('input11');
+            if(idades.length === 0) { output('res11', "Digite as idades."); return; }
+            
+            let count = idades.filter(idd => idd >= 18).length;
+            output('res11', `Maiores de 18 anos: <strong>${count}</strong> pessoa(s).`);
+        }
+
+        // 12. Fatorial (FOR)
+        function ex12() {
+            let n = Number(document.getElementById('input12').value);
+            if(n < 0) { output('res12', "Não existe fatorial de negativo."); return; }
+            if(n === 0) { output('res12', "0! = 1"); return; }
+            
+            let fat = 1;
+            for(let i=1; i<=n; i++) fat *= i;
+            output('res12', `${n}! = ${fat}`);
+        }
+
+        // 13. Soma múltiplos de 3 até N (FOR)
+        function ex13() {
+            let n = Number(document.getElementById('input13').value);
+            if(n < 3) { output('res13', "Digite um número >= 3."); return; }
+            
+            let soma = 0;
+            let lista = [];
+            for(let i=3; i<=n; i+=3) {
+                soma += i;
+                lista.push(i);
+            }
+            output('res13', `Múltiplos: ${lista.join('+')}<br>Soma Total: ${soma}`);
+        }
+
+        // 14. Nomes invertidos
+        function ex14() {
+            let raw = document.getElementById('input14').value;
+            if(!raw.trim()) { output('res14', "Digite os nomes."); return; }
+            
+            let nomes = raw.split(',').map(nome => nome.trim()).filter(n => n !== "");
+            let invertidos = [...nomes].reverse();
+            
+            output('res14', `<strong>Ordem Original:</strong> ${nomes.join(', ')}<br><strong>Invertida:</strong> ${invertidos.join(', ')}`);
+        }
+
+        // 15. Triângulo de Asteriscos (FOR)
+        function ex15() {
+            let n = Number(document.getElementById('input15').value);
+            if(n < 1) { output('res15', "Digite um tamanho válido."); return; }
+            
+            let desenho = '';
+            for(let i=1; i<=n; i++) {
+                // Adiciona espaço não quebrável (&nbsp;) ou apenas asteriscos
+                desenho += '*'.repeat(i) + '<br>';
+            }
+            output('res15', desenho);
+        }
+    </script>
+</body>
+</html>
