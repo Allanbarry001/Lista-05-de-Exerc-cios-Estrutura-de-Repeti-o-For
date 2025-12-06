@@ -1,0 +1,1 @@
+# Lista-05-de-Exerc-cios-Estrutura-de-Repeti-o-For
